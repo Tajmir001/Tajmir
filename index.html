@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.02"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1rem 0;
+            margin: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .google-drive-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .google-drive-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .google-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        main {
+            padding: 2rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .portfolio-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .portfolio-card p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-section {
+            text-align: center;
+            color: white;
+            animation: fadeInUp 1s ease 0.9s both;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .password-modal, .google-drive-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 25px;
+            max-width: 400px;
+            width: 90%;
+            color: white;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .close-modal:hover {
+            opacity: 1;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 1rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .password-input:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+        }
+
+        .password-submit {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .password-submit:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .success-message {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-message h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .drive-link {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .drive-link:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Portfolio</div>
+            <button class="google-drive-btn" onclick="openPasswordModal()">
+                <svg class="google-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6,2A3,3 0 0,1 9,5C9,6.28 8.19,7.38 7.06,7.81C7.15,8.27 7.39,8.83 8,9.63C9,10.92 11,12.83 12,14.17C13,12.83 15,10.92 16,9.63C16.61,8.83 16.85,8.27 16.94,7.81C15.81,7.38 15,6.28 15,5A3,3 0 0,1 18,2A3,3 0 0,1 21,5C21,6.32 20.14,7.45 18.95,7.85C18.87,8.37 18.64,9 18,9.83C17,11.17 15,13.08 14,14.38C13.39,15.17 13.15,15.73 13.06,16.19C14.19,16.62 15,17.72 15,19A3,3 0 0,1 12,22A3,3 0 0,1 9,19C9,17.72 9.81,16.62 10.94,16.19C10.85,15.73 10.61,15.17 10,14.38C9,13.08 7,11.17 6,9.83C5.36,9 5.13,8.37 5.05,7.85C3.86,7.45 3,6.32 3,5A3,3 0 0,1 6,2M6,4A1,1 0 0,0 5,5A1,1 0 0,0 6,6A1,1 0 0,0 7,5A1,1 0 0,0 6,4M18,4A1,1 0 0,0 17,5A1,1 0 0,0 18,6A1,1 0 0,0 19,5A1,1 0 0,0 18,4M12,18A1,1 0 0,0 11,19A1,1 0 0,0 12,20A1,1 0 0,0 13,19A1,1 0 0,0 12,18Z"/>
+                </svg>
+                Google Drive Access
+            </button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="profile-section">
+                <div class="profile-pic">
+                    <!-- Replace with actual profile image -->
+                    <span>👨‍💼</span>
+                </div>
+            </div>
+            <h1>John Doe</h1>
+            <p>Full Stack Developer & Creative Problem Solver</p>
+        </section>
+
+        <section class="about-section">
+            <h2>About Me</h2>
+            <p>I'm a passionate developer with expertise in modern web technologies and a keen eye for design. I love creating innovative solutions that make a difference. With years of experience in both frontend and backend development, I bring ideas to life through clean, efficient code and intuitive user experiences.</p>
+        </section>
+
+        <section class="portfolio-grid">
+            <div class="portfolio-card">
+                <h3>E-Commerce Platform</h3>
+                <p>A full-featured online shopping platform with real-time inventory management, secure payment processing, and responsive design.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Stripe API</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <h3>Task Management App</h3>
+                <p>A collaborative project management tool with real-time updates, file sharing, and team communication features.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">WebSocket</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <h3>Data Visualization Dashboard</h3>
+                <p>Interactive dashboard for business analytics with real-time charts, custom reports, and data export capabilities.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">D3.js</span>
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">Express</span>
+                    <span class="skill-tag">MySQL</span>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <h3>Mobile Fitness App</h3>
+                <p>Cross-platform mobile application for fitness tracking with workout plans, progress monitoring, and social features.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">React Native</span>
+                    <span class="skill-tag">Firebase</span>
+                    <span class="skill-tag">Redux</span>
+                    <span class="skill-tag">REST API</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Get In Touch</h2>
+            <div class="contact-links">
+                <a href="mailto:john.doe@email.com" class="contact-link">Email</a>
+                <a href="https://linkedin.com/in/johndoe" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/johndoe" class="contact-link">GitHub</a>
+                <a href="tel:+1234567890" class="contact-link">Phone</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Password Modal -->
+    <div class="password-modal" id="passwordModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closePasswordModal()">&times;</button>
+            <h3>🔐 Secure Access</h3>
+            <p>Please enter the password to access Google Drive</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
+            <button class="password-submit" onclick="checkPassword()">Access Drive</button>
+            <div class="error-message" id="errorMessage">❌ Incorrect password. Please try again.</div>
+        </div>
+    </div>
+
+    <!-- Google Drive Success Modal -->
+    <div class="google-drive-modal" id="googleDriveModal">
+        <div class="success-message">
+            <h3>✅ Access Granted!</h3>
+            <p>You have successfully authenticated. Click below to access your Google Drive spreadsheet.</p>
+            <a href="https://drive.google.com/drive/folders/1eNT0sbGgTkAYlWyiqNm1D0v8MbcWswoj?usp=drive_link" 
+               target="_blank" 
+               class="drive-link" 
+               onclick="closeGoogleDriveModal()">
+                📊 Open Folder
+            </a>
+            <br><br>
+            <button class="close-modal" onclick="closeGoogleDriveModal()">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // Password configuration - Change this to your desired password
+        const PASSWORD_CONFIG = 'mySecurePassword123';
+
+        let isAuthenticated = false;
+
+        function openPasswordModal() {
+            document.getElementById('passwordModal').style.display = 'flex';
+            document.getElementById('passwordInput').focus();
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function openGoogleDriveModal() {
+            document.getElementById('googleDriveModal').style.display = 'flex';
+        }
+
+        function closeGoogleDriveModal() {
+            document.getElementById('googleDriveModal').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const enteredPassword = document.getElementById('passwordInput').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (enteredPassword === PASSWORD_CONFIG) {
+                isAuthenticated = true;
+                closePasswordModal();
+                openGoogleDriveModal();
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+                document.getElementById('passwordInput').focus();
+                
+                // Add shake animation to modal
+                const modal = document.querySelector('.modal-content');
+                modal.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    modal.style.animation = '';
+                }, 500);
+            }
+        }
+
+        // Handle Enter key press in password input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+        });
+
+        // Close modals when clicking outside
+        document.getElementById('passwordModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePasswordModal();
+            }
+        });
+
+        document.getElementById('googleDriveModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGoogleDriveModal();
+            }
+        });
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add shake animation for wrong password
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Simulate loading password from text file (for demonstration)
+        function loadPasswordFromFile() {
+            // In a real application, you would fetch this from password.txt file
+            // Example: fetch('password.txt').then(response => response.text()).then(data => {...})
+            console.log('Password configuration loaded');
+        }
+
+        // Initialize
+        loadPasswordFromFile();
+    </script>
+</body>
+</html>
