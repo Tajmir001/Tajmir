@@ -3,670 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.02"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.02"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 1rem 0;
-            margin: 20px 0;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .google-drive-btn {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .google-drive-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .google-icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        main {
-            padding: 2rem 0;
-        }
-
-        .hero {
-            text-align: center;
-            color: white;
-            margin-bottom: 4rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            padding: 4rem 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .profile-pic img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .portfolio-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .portfolio-card h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .portfolio-card p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .skill-tag {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .about-section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease 0.6s both;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-section h2 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        .about-section p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-section {
-            text-align: center;
-            color: white;
-            animation: fadeInUp 1s ease 0.9s both;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 3rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 700;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            font-weight: 500;
-        }
-
-        .contact-link:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .password-modal, .google-drive-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 2rem;
-            border-radius: 25px;
-            max-width: 400px;
-            width: 90%;
-            color: white;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: white;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .close-modal:hover {
-            opacity: 1;
-        }
-
-        .modal-content h3 {
-            margin-bottom: 1rem;
-            color: white;
-            font-weight: 600;
-        }
-
-        .modal-content p {
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            backdrop-filter: blur(10px);
-        }
-
-        .password-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .password-input:focus {
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-        }
-
-        .password-submit {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            width: 100%;
-            backdrop-filter: blur(10px);
-        }
-
-        .password-submit:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .error-message {
-            color: #ff6b6b;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        .success-message {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            color: white;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .success-message h3 {
-            color: #4CAF50;
-            margin-bottom: 1rem;
-        }
-
-        .drive-link {
-            display: inline-block;
-            background: #4CAF50;
-            color: white;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 15px;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .drive-link:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
+    <title>Tajmir Group</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts Import for Cinzel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Add Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo">Portfolio</div>
-            <button class="google-drive-btn" onclick="openPasswordModal()">
-                <svg class="google-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6,2A3,3 0 0,1 9,5C9,6.28 8.19,7.38 7.06,7.81C7.15,8.27 7.39,8.83 8,9.63C9,10.92 11,12.83 12,14.17C13,12.83 15,10.92 16,9.63C16.61,8.83 16.85,8.27 16.94,7.81C15.81,7.38 15,6.28 15,5A3,3 0 0,1 18,2A3,3 0 0,1 21,5C21,6.32 20.14,7.45 18.95,7.85C18.87,8.37 18.64,9 18,9.83C17,11.17 15,13.08 14,14.38C13.39,15.17 13.15,15.73 13.06,16.19C14.19,16.62 15,17.72 15,19A3,3 0 0,1 12,22A3,3 0 0,1 9,19C9,17.72 9.81,16.62 10.94,16.19C10.85,15.73 10.61,15.17 10,14.38C9,13.08 7,11.17 6,9.83C5.36,9 5.13,8.37 5.05,7.85C3.86,7.45 3,6.32 3,5A3,3 0 0,1 6,2M6,4A1,1 0 0,0 5,5A1,1 0 0,0 6,6A1,1 0 0,0 7,5A1,1 0 0,0 6,4M18,4A1,1 0 0,0 17,5A1,1 0 0,0 18,6A1,1 0 0,0 19,5A1,1 0 0,0 18,4M12,18A1,1 0 0,0 11,19A1,1 0 0,0 12,20A1,1 0 0,0 13,19A1,1 0 0,0 12,18Z"/>
-                </svg>
-                Google Drive Access
+
+    <header class="site-header">
+        <div class="header-top-bar">
+            <div class="contact-info">
+                <a href="tel:+8801755880400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.28 1.465l-2.135 2.135a1.12 1.12 0 0 0-.163.121l-.03.028c.097.152.333.445.688.898.354.453.824.994 1.486 1.657.662.662 1.205 1.132 1.658 1.486.453.354.746.592.898.688l.028-.03a1.12 1.12 0 0 0 .121-.163l2.135-2.135a1.465 1.465 0 0 1 1.465.28l2.305 1.729c.423.329.974.445 1.465.28l.163-.115a1.745 1.745 0 0 1 .163 2.61l-1.545 2.059a1.745 1.745 0 0 1-2.61.163c-.423-.329-.974-.445-1.465-.28l-2.305 1.729c-.423.329-1.02.186-1.465-.28l-.163-.115a1.745 1.745 0 0 1-2.61-.163L.511 3.735a1.745 1.745 0 0 1 .163-2.61l1.21-1.615z"/>
+                    </svg>
+                    +8801755880400
+                </a>
+                <a href="mailto:tajmirgroup@gmail.com">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                    </svg>
+                    tajmirgroup@
+                </a>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><!-- Put your link here --><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0 0 3.603 0 8.049c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/></a>
+                <a href="#" aria-label="LinkedIn"><!-- Put your link here --><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="#">TAJMIR GROUP</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="bi bi-list"></i>
             </button>
+            <ul class="nav-links">
+                <!-- Add a close button in nav-links -->
+                <button class="close-menu" onclick="toggleMenu()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                
+                <!-- "About" is now a dropdown -->
+                <li class="dropdown">
+                    <a href="#">About <span class="arrow-down"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#">Our History</a></li>
+                        <li><a href="#">Mission & Vision</a></li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#">Enterprise <span class="arrow-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Export-Import</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#">Distribution <span class="arrow-right"></span></a>
+                            <ul class="submenu-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="#">Oil <span class="arrow-right"></span></a>
+                                    <ul class="submenu-menu">
+                                        <li><a href="#">Shapla Oil Agency</a></li>
+                                        <li><a href="#">ShaporirDip Oil Agency</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#">Gas <span class="arrow-right"></span></a>
+                                    <ul class="submenu-menu">
+                                        <li><a href="https://www.facebook.com/mirtradingLPG?rdid=S2YBoYGa1WkMQ7SG&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F14Gz2PpeVXT%2F#">Mir Treading</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">C&F Business</a></li>
+                        <li><a href="#">Trading</a></li>
+                        <li><a href="#">Supplies</a></li>
+                        <li><a href="#">Logistics</a></li>
+                        <li><a href="#">Manufacture</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#">Restaurant <span class="arrow-right"></span></a>
+                            <ul class="submenu-menu">
+                                <li><a href="https://www.facebook.com/share/16HQfzKCMu/">Night Blust</a></li>
+                                <li><a href="#">Empty Submenu Item</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#">Messages <span class="arrow-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="#">Message Type 1 <span class="arrow-right"></span></a>
+                            <ul class="submenu-menu">
+                                <li><a href="#">Sub Item A</a></li>
+                                <li><a href="#">Sub Item B</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Message Type 2</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Media <span class="arrow-down"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <a href="#">Photo Gallery <span class="arrow-right"></span></a>
+                            <ul class="submenu-menu">
+                                <li><a href="#">Event 2023</a></li>
+                                <li><a href="#">Event 2024</a></li>
+                            </ul>
+                        </li>
+                         <li class="dropdown-submenu">
+                            <a href="#">Video Gallery <span class="arrow-right"></span></a>
+                            <ul class="submenu-menu">
+                                <li><a href="#">Corporate</a></li>
+                                <li><a href="#">Commercial</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#">Contact <span class="arrow-down"></span></a>
+                     <ul class="dropdown-menu">
+                        <li><a href="#">Head Office</a></li>
+                        <li><a href="#">Branch Office</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/Login/Login.html" class="login-icon">
+                    <i class="bi bi-person-circle"></i>
+                </a></li>
+            </ul>
         </nav>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <div class="profile-section">
-                <div class="profile-pic">
-                    <!-- Replace with actual profile image -->
-                    <span>👨‍💼</span>
+    <main class="hero-section">
+        <div class="hero-content">
+            <form action="https://www.google.com/search" method="get" target="_blank" class="search-form">
+                <div class="search-bar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                    <input type="text" name="q" placeholder="Search anything with Google..." required>
                 </div>
-            </div>
-            <h1>John Doe</h1>
-            <p>Full Stack Developer & Creative Problem Solver</p>
-        </section>
-
-        <section class="about-section">
-            <h2>About Me</h2>
-            <p>I'm a passionate developer with expertise in modern web technologies and a keen eye for design. I love creating innovative solutions that make a difference. With years of experience in both frontend and backend development, I bring ideas to life through clean, efficient code and intuitive user experiences.</p>
-        </section>
-
-        <section class="portfolio-grid">
-            <div class="portfolio-card">
-                <h3>E-Commerce Platform</h3>
-                <p>A full-featured online shopping platform with real-time inventory management, secure payment processing, and responsive design.</p>
-                <div class="skills-list">
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">Stripe API</span>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <h3>Task Management App</h3>
-                <p>A collaborative project management tool with real-time updates, file sharing, and team communication features.</p>
-                <div class="skills-list">
-                    <span class="skill-tag">Vue.js</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">WebSocket</span>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <h3>Data Visualization Dashboard</h3>
-                <p>Interactive dashboard for business analytics with real-time charts, custom reports, and data export capabilities.</p>
-                <div class="skills-list">
-                    <span class="skill-tag">D3.js</span>
-                    <span class="skill-tag">Angular</span>
-                    <span class="skill-tag">Express</span>
-                    <span class="skill-tag">MySQL</span>
-                </div>
-            </div>
-
-            <div class="portfolio-card">
-                <h3>Mobile Fitness App</h3>
-                <p>Cross-platform mobile application for fitness tracking with workout plans, progress monitoring, and social features.</p>
-                <div class="skills-list">
-                    <span class="skill-tag">React Native</span>
-                    <span class="skill-tag">Firebase</span>
-                    <span class="skill-tag">Redux</span>
-                    <span class="skill-tag">REST API</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="contact-section">
-            <h2>Get In Touch</h2>
-            <div class="contact-links">
-                <a href="mailto:john.doe@email.com" class="contact-link">Email</a>
-                <a href="https://linkedin.com/in/johndoe" class="contact-link">LinkedIn</a>
-                <a href="https://github.com/johndoe" class="contact-link">GitHub</a>
-                <a href="tel:+1234567890" class="contact-link">Phone</a>
-            </div>
-        </section>
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </main>
 
-    <!-- Password Modal -->
-    <div class="password-modal" id="passwordModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closePasswordModal()">&times;</button>
-            <h3>🔐 Secure Access</h3>
-            <p>Please enter the password to access Google Drive</p>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Enter password">
-            <button class="password-submit" onclick="checkPassword()">Access Drive</button>
-            <div class="error-message" id="errorMessage">❌ Incorrect password. Please try again.</div>
-        </div>
-    </div>
-
-    <!-- Google Drive Success Modal -->
-    <div class="google-drive-modal" id="googleDriveModal">
-        <div class="success-message">
-            <h3>✅ Access Granted!</h3>
-            <p>You have successfully authenticated. Click below to access your Google Drive spreadsheet.</p>
-            <a href="https://drive.google.com/drive/folders/1eNT0sbGgTkAYlWyiqNm1D0v8MbcWswoj?usp=drive_link" 
-               target="_blank" 
-               class="drive-link" 
-               onclick="closeGoogleDriveModal()">
-                📊 Open Folder
-            </a>
-            <br><br>
-            <button class="close-modal" onclick="closeGoogleDriveModal()">&times;</button>
-        </div>
-    </div>
-
+    <!-- Add this script at the end of the body tag -->
+        <!-- Add this script at the end of the body tag -->
     <script>
-        // Password configuration - Change this to your desired password
-        const PASSWORD_CONFIG = 'mySecurePassword123';
-
-        let isAuthenticated = false;
-
-        function openPasswordModal() {
-            document.getElementById('passwordModal').style.display = 'flex';
-            document.getElementById('passwordInput').focus();
+        // --- Main Hamburger Menu Toggle ---
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
         }
 
-        function closePasswordModal() {
-            document.getElementById('passwordModal').style.display = 'none';
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('errorMessage').style.display = 'none';
-        }
-
-        function openGoogleDriveModal() {
-            document.getElementById('googleDriveModal').style.display = 'flex';
-        }
-
-        function closeGoogleDriveModal() {
-            document.getElementById('googleDriveModal').style.display = 'none';
-        }
-
-        function checkPassword() {
-            const enteredPassword = document.getElementById('passwordInput').value;
-            const errorMessage = document.getElementById('errorMessage');
-
-            if (enteredPassword === PASSWORD_CONFIG) {
-                isAuthenticated = true;
-                closePasswordModal();
-                openGoogleDriveModal();
-            } else {
-                errorMessage.style.display = 'block';
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('passwordInput').focus();
-                
-                // Add shake animation to modal
-                const modal = document.querySelector('.modal-content');
-                modal.style.animation = 'shake 0.5s ease-in-out';
-                setTimeout(() => {
-                    modal.style.animation = '';
-                }, 500);
+        // --- Close main menu when clicking outside of it ---
+        document.addEventListener('click', function(e) {
+            const navLinks = document.querySelector('.nav-links');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
             }
-        }
+        });
 
-        // Handle Enter key press in password input
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
+        // --- Mobile Accordion Menu Logic ---
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItemsWithSubmenu = document.querySelectorAll('.dropdown > a, .dropdown-submenu > a');
+
+            menuItemsWithSubmenu.forEach(item => {
+                item.addEventListener('click', function (e) {
+                    // Only run this logic on mobile screen sizes
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault(); // Prevent link from navigating
+
+                        const parentLi = this.parentElement;
+                        const submenu = parentLi.querySelector('.dropdown-menu, .submenu-menu');
+                        
+                        if (!submenu) return;
+
+                        // Check if the current submenu is already open
+                        const isAlreadyOpen = submenu.classList.contains('submenu-active');
+                        
+                        // Close all currently open submenus at the same level
+                        const currentlyOpen = parentLi.parentElement.querySelectorAll('.submenu-active');
+                        currentlyOpen.forEach(openMenu => {
+                            openMenu.classList.remove('submenu-active');
+                            openMenu.parentElement.classList.remove('menu-item-open');
+                        });
+
+                        // If it wasn't already open, open it. If it was, it will remain closed.
+                        if (!isAlreadyOpen) {
+                            submenu.classList.add('submenu-active');
+                            parentLi.classList.add('menu-item-open');
+                        }
+                    }
+                });
             });
         });
-
-        // Close modals when clicking outside
-        document.getElementById('passwordModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePasswordModal();
-            }
-        });
-
-        document.getElementById('googleDriveModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeGoogleDriveModal();
-            }
-        });
-
-        // Add smooth scrolling for better UX
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Add shake animation for wrong password
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Simulate loading password from text file (for demonstration)
-        function loadPasswordFromFile() {
-            // In a real application, you would fetch this from password.txt file
-            // Example: fetch('password.txt').then(response => response.text()).then(data => {...})
-            console.log('Password configuration loaded');
-        }
-
-        // Initialize
-        loadPasswordFromFile();
     </script>
 </body>
 </html>
