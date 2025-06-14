@@ -1,0 +1,32 @@
+; user_access.txt
+;
+; --- FORMAT ---
+; Use sections like [user1], [user2] for each user.
+;
+; --- ROLES ---
+; role = "admin" : Gains access to the admin dashboard on the page.
+; role = "user"  : Is redirected to their specific access_link.
+
+[admin_user]
+username = "Admin"
+password = "shakil75"
+role = "admin"
+access_link = "admin_dashboard"
+
+[user_one]
+username = "Gust"
+password = "123"
+role = "user"
+access_link = "https://drive.google.com/drive/folders/1bMIFwBW5T8Jbn6MkLE5boFAN-KyKVmbM?usp=drive_link"
+
+[user_two]
+username = "jane.smith"
+password = "password456"
+role = "user"
+access_link = "https://www.tajmirgroup.com/projects/beta"
+
+[user_three]
+username = "test.user"
+password = "test"
+role = "user"
+access_link = "https://www.example.com"
